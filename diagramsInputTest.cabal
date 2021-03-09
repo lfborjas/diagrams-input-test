@@ -9,7 +9,7 @@ Maintainer:          diagrams-discuss@googlegroups.com
 Copyright:           Tillmann Vogt (2014)
 Category:            Graphics, Diagrams
 Build-type:          Simple
-Cabal-version:       >=1.6
+--Cabal-version:       >=1.6
 
 Executable program1
   Build-depends:      attoparsec >= 0.10
@@ -26,19 +26,19 @@ Executable program1
                     , diagrams-input
                     , either
                     , exceptions
-                    , filepath == 1.3.*
+                    , filepath 
                     , lucid-svg
-                    , monad-control == 0.3.*
-                    , old-locale == 1.0.*
+                    , monad-control
+                    , old-locale
                     , resourcet
                     , split
                     , system-filepath
-                    , text >= 0.11
-                    , time == 1.4.*
+                    , text
+                    , time
                     , transformers
                     , tuple
                     , unordered-containers
-                    , void >= 0.6
+                    , void
                     , xml-conduit
-                    , xml-types == 0.3.*
+                    , xml-types
   Main-Is:            Main.hs
