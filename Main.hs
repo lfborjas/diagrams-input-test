@@ -33,32 +33,5 @@ img :: Either String (Diagram SVG) -> Diagram SVG
 img im = case im of Left err -> mempty
                     Right i -> i
 
--- renderSVG1 :: SVGFloat n => FilePath -> SizeSpec V2 n -> QDiagram SVG V2 n Any -> IO ()
--- renderSVG1 outFile spec = renderSVG outFile spec . renderDia SVG (SVGOptions spec Nothing (mkPrefix outFile) [] True)
-
-
--- renderSVG1' :: SVGFloat n => FilePath -> Options SVG V2 n -> QDiagram SVG V2 n Any -> IO ()
-renderSVG1' outFile opts
-  = BS.writeFile outFile
-  . renderBS
-  . renderDia1 SVG opts
-
-renderDia1 b opts d = snd (renderDiaT1 b opts d)
-
-renderDiaT1 b opts d = (g2o, renderRTree b opts' . showS . toRTree g2o $ d')
-  where (opts', g2o, d') = adjustDia b opts d
-
-showS :: RTree b v n Annotation -> RTree b v n Annotation
-showS rtree = rtree -- Debug.Trace.trace (show rtree) rtree
-
-mkPrefix :: FilePath -> T.Text
-mkPrefix = T.filter isAlpha . T.pack . takeBaseName
-
 lastN :: Int -> [a] -> [a]
 lastN n xs = drop (length xs - n) xs
-
-instance Show (RNode b v n a) where
-  show (RStyle _) = "rstyle"
-  show (RAnnot _) = "RAnnot"
-  show (RPrim _) = "RPrim"
-  show (REmpty) = "REmpty"
